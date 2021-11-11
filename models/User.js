@@ -34,11 +34,11 @@ User.init(
       validate: {
         len: [8],
       },
-    },
-    number_of_books: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    }
+    // number_of_books: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
   },
   {
     hooks: {
