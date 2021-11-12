@@ -1,25 +1,31 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Book, User } = require('../models');
 const withAuth = require('../utils/auth');
 
+//GET all Users for homepage
 router.get('/', async (req, res) => {
-  try {
-    // Get all projects and JOIN with user data
-    const projectData = await Project.findAll({
+  try {  
+    const userData = await User.findAll({
       include: [
         {
-          model: User,
-          attributes: ['name'],
+          model: Book,
+          attributes: [
+            'id',
+            'title',
+            'author',
+            'isbn',
+            'pages'
+          ],
         },
       ],
     });
 
     // Serialize data so the template can read it
-    const projects = projectData.map((project) => project.get({ plain: true }));
+    const users = userData.map((book) => user.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      projects, 
+      users, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -27,24 +33,44 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+// Get one user
+router.get('/user/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const userData = await Book.findByPk(req.params.id, {
       include: [
         {
-          model: User,
-          attributes: ['name'],
+          model: Book,
+          attributes: [
+            'id',
+            'title',
+            'author',
+            'isbn',
+            'pages'
+          ],
         },
       ],
     });
 
-    const project = projectData.get({ plain: true });
-
-    res.render('project', {
-      ...project,
+    const user = userData.get({ plain: true });
+    res.render('user', {
+      ...user,
       logged_in: req.session.logged_in
     });
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Get one book
+router.get('/book/:id', async (req, res) => {
+  try {
+    const bookData = await Book.findByPk(req.params.id);
+
+    const book = bookData.get({ plain: true });
+
+    res.render('book', { book });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -55,7 +81,7 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: Book }],
     });
 
     const user = userData.get({ plain: true });
