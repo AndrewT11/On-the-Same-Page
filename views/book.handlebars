@@ -1,4 +1,4 @@
-<div class="text-center">
+{{!-- <div class="text-center">
   <h2>{{name}}</h2>
   <p>{{{get_emoji}}}</p>
   <p>{{description}}</p>
@@ -11,4 +11,16 @@
   <p>
     <button class="btn btn-primary">Reserve this book!</button>
   </p>
-</div>
+</div> --}}
+
+
+{{!-- Needs to be editted to display dynamic filename (aka picture of book) --}}
+
+<section class="painting">
+  <img src="/images/{{book.filename}}" alt="{{book.description}}">
+  <div class="painting-details">
+    <h3>{{book.title}}</h3>
+    <p>By: {{book.author}}</p>
+    <p>Genre: {{book.genre}}</p>
+  </div>
+</section>
