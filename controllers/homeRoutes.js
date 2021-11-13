@@ -2,26 +2,21 @@ const router = require('express').Router();
 const { Book, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-//GET all Users for homepage
 router.get('/', async (req, res) => {
-  try {  
+  try {
+    // Get all users for homepage
     const userData = await User.findAll({
       include: [
         {
           model: Book,
-          attributes: [
-            'id',
-            'title',
-            'author',
-            'isbn',
-            'pages'
-          ],
+          //filename will be the picture preview of the book. Should be the first in the list. filename[0]
+          attributes: ['filename', 'title'],
         },
       ],
     });
 
     // Serialize data so the template can read it
-    const users = userData.map((book) => user.get({ plain: true }));
+    const users = userData.map((user) => user.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -33,72 +28,72 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get one user
+//Get one user
 router.get('/user/:id', async (req, res) => {
-  try {
-    const userData = await Book.findByPk(req.params.id, {
-      include: [
-        {
-          model: Book,
-          attributes: [
-            'id',
-            'title',
-            'author',
-            'isbn',
-            'pages'
-          ],
-        },
-      ],
-    });
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
+    try {
+      const userData = await User.findByPk(req.params.id, {
+        include: [
+          {
+            model: Book,
+            attributes: [
+              'title',
+              'author',
+              'isbn',
+              'pages',
+              'user_id'
+            ],
+          },
+        ],
+      });
+      const user = userData.get({ plain: true });
 
-    const user = userData.get({ plain: true });
-    res.render('user', {
-      ...user,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
+      res.render('user', { user, logged_in: req.session.logged_in });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
   }
 });
 
-// Get one book
-router.get('/book/:id', async (req, res) => {
+//Get one book
+router.get('/book/:id', withAuth, async (req, res) => {
   try {
-    const bookData = await Book.findByPk(req.params.id);
-
-    const book = bookData.get({ plain: true });
-
-    res.render('book', { book });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    const bookData = await Book.findbyPK(req.params.id);
+    const book = bookData.get({ plain: true});
+    res.render('book', { book, loggedIn: req.session.loggedIn });
+  } catch (err){
+    res.status(500).json(err)
   }
 });
 
-// Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Book }],
-    });
+// // Use withAuth middleware to prevent access to route
+// router.get('/profile', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Project }],
+//     });
 
-    const user = userData.get({ plain: true });
+//     const user = userData.get({ plain: true });
 
-    res.render('profile', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render('profile', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
+//Login route
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
 
