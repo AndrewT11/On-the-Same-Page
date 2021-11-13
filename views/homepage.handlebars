@@ -23,6 +23,25 @@
 </div>
 {{/each}} --}}
 
+
+    <style>
+        body {
+          background-image: url('/images/background-4.jpeg');
+        }
+      </style>
+
+
+    <div class="container row valign-wrapper greenbox">
+
+
+      <ul class="center-align">   View By:
+       <li> <a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">All Books</a>
+        <a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Author</a>
+        <a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Genre</a>
+      </li>
+</ul>
+    </div>
+
 {{#each users as |user|}}
 {{> user-details}}
 {{/each}}
