@@ -16,11 +16,29 @@
 
 {{!-- Needs to be editted to display dynamic filename (aka picture of book) --}}
 
-<section class="painting">
-  <img src="/images/{{book.filename}}" alt="{{book.description}}">
-  <div class="painting-details">
-    <h3>{{book.title}}</h3>
-    <p>By: {{book.author}}</p>
-    <p>Genre: {{book.genre}}</p>
-  </div>
-</section>
+    <style>
+        body {
+          background-image: url('./images/background-5.jfif');
+        }
+      </style>
+
+<div class="container row bookbox">
+
+    <div class="card horizontal s11 m10 l9">
+        <div class="card-image">
+          <img src="/images/{{book.filename}}" alt="{{book.description}}">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <h3>{{book.title}}</h3>
+            
+            <ul>Description:
+                <li>blahblah</li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <h4>By: {{book.author}}</h4>
+            <h5>Genre: {{book.genre}}</h5>
+          </div>
+        </div>
+      </div>
