@@ -1,27 +1,30 @@
 const router = require('express').Router();
-const { Book, User } = require('../models');
+const {
+  Book,
+  User
+} = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
     // Get all users for homepage
     const userData = await User.findAll({
-      include: [
-        {
-          model: Book,
-          //filename will be the picture preview of the book. Should be the first in the list. filename[0]
-          attributes: ['filename', 'title'],
-        },
-      ],
+      include: [{
+        model: Book,
+        //filename will be the picture preview of the book. Should be the first in the list. filename[0]
+        attributes: ['filename', 'title'],
+      }, ],
     });
 
     // Serialize data so the template can read it
-    const users = userData.map((user) => user.get({ plain: true }));
+    const users = userData.map((user) => user.get({
+      plain: true
+    }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      users, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      users,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -35,22 +38,25 @@ router.get('/user/:id', async (req, res) => {
   } else {
     try {
       const userData = await User.findByPk(req.params.id, {
-        include: [
-          {
-            model: Book,
-            attributes: [
-              'title',
-              'author',
-              'isbn',
-              'pages',
-              'user_id'
-            ],
-          },
-        ],
+        include: [{
+          model: Book,
+          attributes: [
+            'title',
+            'author',
+            'isbn',
+            'pages',
+            'user_id'
+          ],
+        }, ],
       });
-      const user = userData.get({ plain: true });
+      const user = userData.get({
+        plain: true
+      });
 
-      res.render('user', { user, logged_in: req.session.logged_in });
+      res.render('user', {
+        user,
+        logged_in: req.session.logged_in
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -62,9 +68,14 @@ router.get('/user/:id', async (req, res) => {
 router.get('/book/:id', withAuth, async (req, res) => {
   try {
     const bookData = await Book.findbyPK(req.params.id);
-    const book = bookData.get({ plain: true});
-    res.render('book', { book, loggedIn: req.session.loggedIn });
-  } catch (err){
+    const book = bookData.get({
+      plain: true
+    });
+    res.render('book', {
+      book,
+      loggedIn: req.session.loggedIn
+    });
+  } catch (err) {
     res.status(500).json(err)
   }
 });
