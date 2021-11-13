@@ -5,20 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>On The Same Page</title>
-  <link rel="stylesheet" href="/css/jass.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="./css/jass.css"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <header>
+  <header class="center-align">
     <h1>On the Same Page</h1>
   </header>
-  <nav>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
+  <nav class="nav-wrapper valign-wrapper ">
+    <ul class="right-align">
+      <li><a href="/">Home</a></li>
+      {{#if loggedIn}}
+      <li><button id="logout" class="btn-no-style">Logout</button></li>
+      {{else}}
+      <li><a href="/login">Login</a></li>
+    </ul>
     {{/if}}
   </nav>
   <main>
@@ -30,13 +39,17 @@
 
 {{!-- 
     </div> --}}
-  </main>
+ </main>
 
 
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 
 </html>
