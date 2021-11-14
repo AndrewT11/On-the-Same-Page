@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Book } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+//create new book
 router.post('/', withAuth, async (req, res) => {
   try {
     const newBook = await Book.create({
@@ -15,27 +16,25 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
-  try {
-    const bookData = await Book.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
-    });
+//delete book
+// router.delete('/:id', withAuth, async (req, res) => {
+//   try {
+//     const bookData = await Book.destroy({
+//       where: {
+//         id: req.params.id,
+//         user_id: req.session.user_id,
+//       },
+//     });
 
-    if (!bookData) {
-      res.status(404).json({ message: 'No book found with this id!' });
-      return;
-    }
+//     if (!bookData) {
+//       res.status(404).json({ message: 'No book found with this id!' });
+//       return;
+//     }
 
-    res.status(200).json(bookData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.status(200).json(bookData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;
-
-
-
