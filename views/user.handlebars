@@ -1,4 +1,14 @@
-<div class="row">
+<section class="container">
+  <h3 class="user-name">{{user.name}}</h3>
+
+  <section class="flex-row justify-center">
+    {{#each user.books as |book|}}
+    {{> book-details}}
+    {{/each}}
+  </section>
+</section>
+
+{{!-- <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{name}}!</h2>
   </div>
@@ -27,17 +37,17 @@
     </form>
   </div>
 
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
+  {{#if users.length}}
+  <div class="col-md-6 user-list">
+    <h3>Current Users:</h3>
 
-    {{#each projects as |project|}}
+    {{#each users as |user|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
+        <h4><a href="/user/{{user.id}}">{{user.name}}</a></h4>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
+        <button class="btn btn-sm btn-danger" data-id="{{user.id}}">DELETE</button>
       </div>
     </div>
     {{/each}}
@@ -45,4 +55,4 @@
   {{/if}}
 </div>
 
-<script src="./js/profile.js"></script>
+<script src="./js/user.js"></script> --}}
