@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
         {
           model: Book,
           //filename will be the picture preview of the book. Should be the first in the list. filename[0]
-          attributes: ['filename', 'title'],
+          attributes: ['title'],
+          //add attribute of picture when we pull from isbn
         },
       ],
     });
