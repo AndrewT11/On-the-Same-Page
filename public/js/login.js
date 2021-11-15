@@ -11,10 +11,10 @@ const loginFormHandler = async (event) => {
       method: 'POST',
       body: JSON.stringify({
         email,
-        password
+        password,
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     });
 
@@ -40,17 +40,17 @@ const signupFormHandler = async (event) => {
       body: JSON.stringify({
         username,
         email,
-        password
+        password,
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     });
 
     if (response.ok) {
       document.location.replace('/profile');
     } else {
-      alert("Failed to sign up. Oh darn. :(");
+      alert('Error loading');
     }
   }
 };
