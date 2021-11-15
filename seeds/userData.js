@@ -41,4 +41,4 @@ const userData = [
 
 const seedUser = () => User.bulkCreate(userData);
 
-module.exports = seedGallery;
+module.exports = seedUser;
