@@ -2,53 +2,64 @@ const axios = require('axios');
 // ToDO We need to wrap this in a try-catch
 async function getBookByISBN(isbn) {
     try {
-        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${process.env.googleKey}`);
         console.log("this is working");
+        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${process.env.googleKey}`);
+
     } catch (error) {
         console.error(error);
     }
 };
 
-export {
-    getBookByISBN
-};
+// export {
+//     getBookByISBN
+// };
 
 async function getBookByAuthor(author) {
     try {
-        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=author:${author}&key=${process.env.googleKey}`);
         console.log("this is working");
+        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=author:${author}&key=${process.env.googleKey}`);
+
     } catch (error) {
         console.error(error);
     }
 };
 
-export {
-    getBookByAuthor
-};
+// export {
+//     getBookByAuthor
+// };
 
 async function getBookByTitle(title) {
     try {
-        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=title:${title}&key=${process.env.googleKey}`);
         console.log("this is working");
+        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=title:${title}&key=${process.env.googleKey}`);
+
     } catch (error) {
         console.error(error);
     }
 };
 
-export {
-    getBookByTitle
-};
+// export {
+//     getBookByTitle
+// };
 
 async function getBookByPages(pages) {
     try {
-        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=pages:${pages}&key=${process.env.googleKey}`);
         console.log("this is working");
+        return await axios.get(`https://www.googleapis.com/books/v1/volumes?q=pages:${pages}&key=${process.env.googleKey}`);
+
     } catch (error) {
         console.error(error);
     }
 };
 
-export {
+// export {
+//     getBookByPages
+// };
+console.log(getBookByPages);
+module.exports = {
+    getBookByISBN,
+    getBookByAuthor,
+    getBookByTitle,
     getBookByPages
 };
 
