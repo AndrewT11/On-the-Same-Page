@@ -204,6 +204,7 @@ nav li a:hover {
   border: 3px solid rgb(6, 65, 57);
   border-radius: var(--border-radius);
   border-style: groove;
+  height:fit-content;
   /* border-width:thick; */
 }
 
@@ -214,5 +215,27 @@ nav li a:hover {
 
 .btn-large{
 margin: 25px;
+
+}
+
+
+.userbox{
+  /* flex: 2; */
+  background-color: var(--secondary);
+  color: var(--light);
+  padding: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 13vh;
+  border: 3px solid rgb(6, 65, 57);
+  border-radius: var(--border-radius);
+  border-style: groove;
+  /* border-width:thick; */
+}
+
+.userbox ul {
+ font-size: 2rem;
 
 }
