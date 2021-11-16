@@ -45,9 +45,6 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/', withAuth, async (req, res) => {
   try {
     const genreData = await Book.findAll({
-      // where: {
-      //   genre, //confusion here
-      },
       order: [['genre', 'ASC']],
     });
 

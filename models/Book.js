@@ -22,6 +22,12 @@ Book.init(
       type: DataTypes.BIGINT,
       allowNull: false,
     },
+    genre: {
+      type: DataTypes.STRING,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
     pages: {
       type: DataTypes.INTEGER,
       allowNull: false,

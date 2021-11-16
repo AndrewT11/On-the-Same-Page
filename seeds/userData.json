@@ -2,37 +2,31 @@
   {
     "name": "Johnny Smith",
     "email": "jsmith84@gmail.com",
-    "password": "password12345",
-    "number_of_books": 4
+    "password": "password12345"
   },
   {
     "name": "Luis Scott-Vargas",
     "email": "THE-LSV@gmail.com",
-    "password": "password12345",
-    "number_of_books": 2
+    "password": "password12345"
   },
   {
     "name": "Reid Duke",
     "email": "reider85@gmail.com",
-    "password": "password12345",
-    "number_of_books": 3
+    "password": "password12345"
   },
   {
     "name": "Jimmy Davis",
     "email": "jimmydean.com",
-    "password": "password12345",
-    "number_of_books": 1
+    "password": "password12345"
   },
   {
     "name": "Andrew Tran",
     "email": "andyt@gmail.com",
-    "password": "password12345",
-    "number_of_books": 6
+    "password": "password12345"
   },
   {
     "name": "Andrea Stickland",
     "email": "Dreainthestix@gmail.com",
-    "password": "password12345",
-    "number_of_books": 7
+    "password": "password12345"
   }
 ]
