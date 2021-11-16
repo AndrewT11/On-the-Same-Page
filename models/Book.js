@@ -19,8 +19,8 @@ Book.init(
       type: DataTypes.STRING,
     },
     isbn: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.BIGINT,
+      allowNull: false,
     },
     pages: {
       type: DataTypes.INTEGER,

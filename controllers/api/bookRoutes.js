@@ -16,6 +16,73 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// route to get all books
+router.get('/', withAuth, async (req, res) => {
+  const bookData = await Book.findAll().catch((err) => {
+    res.json(err);
+  });
+  const books = bookData.map((book) => book.get({ plain: true }));
+  res.render('all', { books });
+});
+
+//get one book by id
+// router.get('/:id', withAuth, async (req, res) => {
+//   try {
+//     const bookData = await Book.findbyPK(req.params.id);
+//     const book = bookData.get({
+//       plain: true,
+//     });
+//     res.render('book', {
+//       book,
+//       loggedIn: req.session.loggedIn,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+//Get books by Genre
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const genreData = await Book.findAll({
+      // where: {
+      //   genre, //confusion here
+      },
+      order: [['genre', 'ASC']],
+    });
+
+    const genres = genreData.map((book) => book.get({ plain: true }));
+
+    res.render('genre', {
+      genres,
+      logged_in: req.session.logged_in,
+    });
+  } catch {
+    res.status(500).json(err);
+  }
+});
+
+//Get books by Author
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const authorData = await Book.findAll({
+      where: {
+        author: 1,
+      },
+      order: [['author', 'ASC']],
+    });
+
+    const authors = authorData.map((book) => book.get({ plain: true }));
+
+    res.render('author', {
+      authors,
+      logged_in: req.session.logged_in,
+    });
+  } catch {
+    res.status(500).json(err);
+  }
+});
+
 //delete book
 // router.delete('/:id', withAuth, async (req, res) => {
 //   try {
