@@ -27,6 +27,7 @@ Book.init(
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     pages: {
       type: DataTypes.INTEGER,
