@@ -63,12 +63,16 @@ router.get('/user/:id', async (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/profile');
-    return;
-  }
+  try {
+    if (req.session.loggedIn) {
+      res.redirect('/profile');
+      return;
+    }
 
-  res.render('login');
+    res.render('login');
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // //Get one book
