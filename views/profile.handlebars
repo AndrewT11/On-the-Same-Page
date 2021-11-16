@@ -1,0 +1,87 @@
+  <div class="row">
+        <div class="col s12 m4">
+          <div>
+          <h3>Welcome, {{name}}!</h3>
+         </div>    
+
+         <div class=" center-align">
+        <!-- Modal Trigger -->
+         <a class="waves-effect waves-light btn modal-trigger " href="#modal1">Add New Book</a>
+          </div>
+       </div>
+
+
+        <div class= " col s12 m8 ">
+
+          <div class=" bookbox ">
+
+           {{#each books as |book|}}
+       <li> {{> book-details}}</li>
+        {{/each}}
+          </div>
+
+
+        </div>
+
+
+   </div>
+      
+   
+
+     
+<!-- Modal Structure -->
+<div id="modal1" class="modal ">   
+ 
+   <div class="modal-content center-align">
+         <div class=" modal-top">
+   <h4 id="info-modal-heading center-align">New Book</h4> 
+   </div>
+      <form class="form new-book-form  center-align">
+
+        <div class="row">
+        <div class="form-group input-field  center-align">
+          <input class="form-input" type="text" id="book-title" name="book-title" />
+          <label for="book-title">Book Title:</label>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group input-field  center-align">
+          <input class="form-input" type="text" id="book-author" name="book-author" />
+          <label for="book-author">Author:</label>
+            </div>
+        </div>   
+
+        <div class="row">
+            <div class="form-group input-field center-align">
+                <input class="form-input" type="text" id="book-isbn" name="book-isbn"></input>
+                <label for="book-isbn">ISBN:</label>
+            </div>
+        </div>
+
+        <div class="row">
+        <div class="form-group input-field  center-align">        
+        <textarea class="form-input" type="text" id="book-desc" name="book-desc"></textarea>
+       <label for="book-desc">Description:</label> 
+       </div>
+
+
+      </form>
+    
+   
+    <div class="modal-footer  center-align">
+        <button href="#!" class="modal-close waves-effect waves teal darken-4 btn-large add-book">Add Book</button>
+    </div>
+</div>
+ </div>
+
+
+
+ 
+  <script src="./js/profile.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+</script>
