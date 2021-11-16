@@ -31,17 +31,30 @@
       </style>
 
 
-    <div class="container row valign-wrapper greenbox">
+<div class = "container">
 
+<div class="row">
 
-      <ul class="center-align">   View By:
-       <li> <a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">All Books</a>
-        <a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Author</a>
-        <a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Genre</a>
-      </li>
-</ul>
+    <div class=" valign-wrapper greenbox col s10 m6 pull-m1">
+
+      <ul class="center-align ">   View By:
+       <li> <a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">All Books</a></li>
+        <li><a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Author</a></li>
+        <li><a class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Genre</a></li>
+      </ul>
+
     </div>
 
-{{#each users as |user|}}
-{{> user-details}}
-{{/each}}
+  <div class= " valign-wrapper  userbox col s10 m6 push-m1">
+
+    <div class= " center-align ">
+      <ul> View by User:
+        {{#each users as |user|}}
+       <li> {{> user-details}}</li>
+        {{/each}}
+    </ul>
+    </div>
+  </div>
+</div>
+
+</div>
