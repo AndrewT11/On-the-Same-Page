@@ -19,8 +19,15 @@ Book.init(
       type: DataTypes.STRING,
     },
     isbn: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    genre: {
+      type: DataTypes.STRING,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     pages: {
       type: DataTypes.INTEGER,

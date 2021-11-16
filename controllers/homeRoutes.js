@@ -64,9 +64,15 @@ router.get('/user/:id', async (req, res) => {
   }
 });
 
-//Get one book
-router.get('/book/:id', withAuth, async (req, res) => {
+router.get('/profile', (req, res) => {
   try {
+ bookRoutes
+    if (req.session.loggedIn) {
+      res.render('profile');
+    }
+
+    res.render('login');
+
     const bookData = await Book.findbyPK(req.params.id);
     const book = bookData.get({
       plain: true,
@@ -78,10 +84,27 @@ router.get('/book/:id', withAuth, async (req, res) => {
       loggedIn: req.session.loggedIn,
 
     });
+ main
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+// //Get one book
+// router.get('/book/:id', withAuth, async (req, res) => {
+//   try {
+//     const bookData = await Book.findbyPK(req.params.id);
+//     const book = bookData.get({
+//       plain: true,
+//     });
+//     res.render('book', {
+//       book,
+//       loggedIn: req.session.loggedIn,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // // Use withAuth middleware to prevent access to route
 // router.get('/profile', withAuth, async (req, res) => {

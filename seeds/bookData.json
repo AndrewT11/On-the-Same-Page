@@ -3,111 +3,143 @@
     "title": "The DaVinci Code",
     "author": "Dan Brown",
     "isbn": 9780307474278,
+    "genre": "",
+    "description": "",
     "pages": 597,
-    "user_id": 1234
+    "user_id": 1
   },
   {
     "title": "The Lost World",
     "author": "Michael Crichton",
     "isbn": 9780345538994,
+    "genre": "",
+    "description": "",
     "pages": 416,
-    "user_id": 1234
+    "user_id": 1
   },
   {
     "title": "The Beatles A Hard Day's Night",
     "author": "Mark Lewisohn",
     "isbn": 9780714871851,
+    "genre": "",
+    "description": "",
     "pages": 1234,
-    "user_id": 1234
+    "user_id": 1
   },
   {
     "title": "The Greatest Show on Earth",
     "author": "Richard Dawkins",
     "isbn": 9781416594796,
+    "genre": "",
+    "description": "",
     "pages": 572,
-    "user_id": 1
+    "user_id": 2
   },
   {
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
     "isbn": 9780062368683,
+    "genre": "",
+    "description": "",
     "pages": 336,
-    "user_id": 1
+    "user_id": 2
   },
   {
     "title": "A Time to Kill",
     "author": "John Grisham",
     "isbn": 9780385338608,
+    "genre": "",
+    "description": "",
     "pages": 515,
-    "user_id": 1
+    "user_id": 2
   },
   {
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "isbn": 9780743246392,
+    "genre": "",
+    "description": "",
     "pages": 165,
-    "user_id": 1
+    "user_id": 3
   },
   {
     "title": "A Clockwork Orange",
     "author": "Anthony Burgess",
     "isbn": 9780393312836,
+    "genre": "",
+    "description": "",
     "pages": 192,
-    "user_id": 1
+    "user_id": 3
   },
   {
     "title": "One Hundred Years of Solitude",
     "author": "Gabriel Garcia Marquez",
     "isbn": 9780060531041,
+    "genre": "",
+    "description": "",
     "pages": 417,
-    "user_id": 1
+    "user_id": 4
   },
   {
     "title": "Crime and Punishment",
     "author": "Fyodor Dostoyevsky",
     "isbn": 9780486415871,
+    "genre": "",
+    "description": "",
     "pages": 430,
-    "user_id": 1
+    "user_id": 4
   },
   {
     "title": "Madame Bovary",
     "author": "Gustave Flaubert",
     "isbn": 9780553213416,
+    "genre": "",
+    "description": "",
     "pages": 424,
-    "user_id": 1
+    "user_id": 5
   },
   {
     "title": "The Divine Comedy",
     "author": "Dante Alighieri ",
     "isbn": 9781101117996,
+    "genre": "",
+    "description": "",
     "pages": 928,
-    "user_id": 1
+    "user_id": 6
   },
   {
     "title": "The Complete Sherlock Holmes Volume 3",
     "author": "Sir Arthur Conan Doyle",
     "isbn": 9780385006897,
+    "genre": "",
+    "description": "",
     "pages": 1122,
-    "user_id": 1
+    "user_id": 6
   },
   {
     "title": "Murder on the Orient Express",
     "author": "Agatha Christie",
     "isbn": 9781444802504,
+    "genre": "",
+    "description": "",
     "pages": 344,
-    "user_id": 1
+    "user_id": 5
   },
   {
     "title": "The Jungle Book",
     "author": "Rudyard Kipling",
     "isbn": 9789176393918,
+    "genre": "",
+    "description": "",
     "pages": 151,
-    "user_id": 1
+    "user_id": 4
   },
   {
     "title": "Great Expectations",
     "author": "Charles Dickens",
     "isbn": 9781853260049,
+    "genre": "",
+    "description": "",
     "pages": 395,
     "user_id": 1
   }
