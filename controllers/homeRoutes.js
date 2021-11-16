@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
         {
           model: Book,
           //filename will be the picture preview of the book. Should be the first in the list. filename[0]
-          attributes: ['title', 'description'],
+          attributes: ['title'],
           // add file name and description back in once we can get this working.
         },
       ],
@@ -62,21 +62,30 @@ router.get('/user/:id', async (req, res) => {
   }
 });
 
-//Get one book
-router.get('/book/:id', withAuth, async (req, res) => {
-  try {
-    const bookData = await Book.findbyPK(req.params.id);
-    const book = bookData.get({
-      plain: true,
-    });
-    res.render('book', {
-      book,
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    res.status(500).json(err);
+router.get('/profile', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/profile');
+    return;
   }
+
+  res.render('login');
 });
+
+// //Get one book
+// router.get('/book/:id', withAuth, async (req, res) => {
+//   try {
+//     const bookData = await Book.findbyPK(req.params.id);
+//     const book = bookData.get({
+//       plain: true,
+//     });
+//     res.render('book', {
+//       book,
+//       loggedIn: req.session.loggedIn,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // // Use withAuth middleware to prevent access to route
 // router.get('/profile', withAuth, async (req, res) => {
