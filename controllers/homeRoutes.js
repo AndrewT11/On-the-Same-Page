@@ -1,19 +1,23 @@
 const router = require('express').Router();
-const { Book, User } = require('../models');
+const {
+  Book,
+  User
+} = require('../models');
 const withAuth = require('../utils/auth');
+const {
+  getBookByISBN
+} = require('../../db/bookApi');
 
 // Get all users for homepage
 router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll({
-      include: [
-        {
-          model: Book,
-          //filename will be the picture preview of the book. Should be the first in the list. filename[0]
-          attributes: ['title'],
-          // add file name and description back in once we can get this working.
-        },
-      ],
+      include: [{
+        model: Book,
+        //filename will be the picture preview of the book. Should be the first in the list. filename[0]
+        attributes: ['title'],
+        // add file name and description back in once we can get this working.
+      }, ],
     });
 
     // Serialize data so the template can read it
@@ -40,12 +44,10 @@ router.get('/user/:id', async (req, res) => {
   } else {
     try {
       const userData = await User.findByPk(req.params.id, {
-        include: [
-          {
-            model: Book,
-            attributes: ['title', 'author', 'isbn', 'pages', 'user_id'],
-          },
-        ],
+        include: [{
+          model: Book,
+          attributes: ['title', 'author', 'isbn', 'pages', 'user_id'],
+        }, ],
       });
       const user = userData.get({
         plain: true,
@@ -64,11 +66,25 @@ router.get('/user/:id', async (req, res) => {
 
 router.get('/profile', (req, res) => {
   try {
+ bookRoutes
     if (req.session.loggedIn) {
       res.render('profile');
     }
 
     res.render('login');
+
+    const bookData = await Book.findbyPK(req.params.id);
+    const book = bookData.get({
+      plain: true,
+    });
+
+    const googleBook = await getBookByISBN(book.isbn)
+    res.render('book', {
+      book,
+      loggedIn: req.session.loggedIn,
+
+    });
+ main
   } catch (err) {
     res.status(500).json(err);
   }

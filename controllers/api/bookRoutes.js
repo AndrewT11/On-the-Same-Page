@@ -1,6 +1,14 @@
 const router = require('express').Router();
-const { Book } = require('../../models');
+const {
+  Book
+} = require('../../models');
 const withAuth = require('../../utils/auth');
+const {
+  getBookByISBN,
+  getBookByAuthor,
+  getBookByTitle,
+  getBookByPages
+} = require('../../db/bookApi');
 
 //create new book
 router.post('/', withAuth, async (req, res) => {
