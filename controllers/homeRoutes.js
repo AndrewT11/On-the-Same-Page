@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
 
 //Get one user
 router.get('/user/:id', async (req, res) => {
-  if (!req.session.loggedIn) {
+  if (!req.session.logged_in) {
     res.redirect('/login');
   } else {
     try {
@@ -54,7 +54,7 @@ router.get('/user/:id', async (req, res) => {
       });
 
       res.render('user', {
-        user,
+        ...user,
         logged_in: req.session.logged_in,
       });
     } catch (err) {
