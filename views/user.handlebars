@@ -1,8 +1,8 @@
 <section class="container">
-  <h3 class="user-name">{{user.name}}</h3>
+  <h3 class="user-name">{{name}}'s Books</h3>
 
   <section class="flex-row justify-center">
-    {{#each user.books as |book|}}
+    {{#each books as |book|}}
     {{> book-details}}
     {{/each}}
   </section>

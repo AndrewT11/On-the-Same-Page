@@ -23,8 +23,9 @@
   <nav class="nav-wrapper valign-wrapper ">
     <ul class="right-align">
       <li><a href="/">Home</a></li>
-      {{#if loggedIn}}
-      <li><button id="logout" class="btn-no-style">Logout</button></li>
+      {{#if logged_in}}
+      <li><a href="/profile">Profile</a> </li>
+      <li><a id="logout" class="">Logout</a></li>
       {{else}}
       <li><a href="/login">Login</a></li>
     </ul>

@@ -6,7 +6,7 @@ const {
 const withAuth = require('../utils/auth');
 const {
   getBookByISBN
-} = require('../../db/bookApi');
+} = require('../db/bookApi');
 
 // Get all users for homepage
 router.get('/', async (req, res) => {
@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
 
 //Get one user
 router.get('/user/:id', async (req, res) => {
-  if (!req.session.loggedIn) {
+  if (!req.session.logged_in) {
     res.redirect('/login');
   } else {
     try {
@@ -54,7 +54,7 @@ router.get('/user/:id', async (req, res) => {
       });
 
       res.render('user', {
-        user,
+        ...user,
         logged_in: req.session.logged_in,
       });
     } catch (err) {
@@ -64,31 +64,55 @@ router.get('/user/:id', async (req, res) => {
   }
 });
 
-router.get('/profile', (req, res) => {
+// Use withAuth middleware to prevent access to route
+router.get('/profile', withAuth, async (req, res) => {
   try {
- bookRoutes
-    if (req.session.loggedIn) {
-      res.render('profile');
-    }
-
-    res.render('login');
-
-    const bookData = await Book.findbyPK(req.params.id);
-    const book = bookData.get({
-      plain: true,
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Book }],
     });
 
-    const googleBook = await getBookByISBN(book.isbn)
-    res.render('book', {
-      book,
-      loggedIn: req.session.loggedIn,
+    const user = userData.get({ plain: true });
 
+    res.render('profile', {
+      ...user,
+      logged_in: true
     });
- main
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+
+
+
+
+// router.get('/profile', async (req, res) => {
+//   try {
+//  bookRoutes
+//     if (req.session.loggedIn) {
+//       res.render('profile');
+//     }
+
+//     res.render('login');
+
+//     const bookData = await Book.findbyPK(req.params.id);
+//     const book = bookData.get({
+//       plain: true,
+//     });
+
+//     const googleBook = await getBookByISBN(book.isbn)
+//     res.render('book', {
+//       book,
+//       loggedIn: req.session.loggedIn,
+
+//     });
+//  main
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 // //Get one book
 // router.get('/book/:id', withAuth, async (req, res) => {
@@ -129,7 +153,7 @@ router.get('/profile', (req, res) => {
 //Login route
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/profile');
     return;
   }
 
