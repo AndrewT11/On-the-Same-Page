@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
+const PORT = process.env.PORT || 3001;
 
 //Socket.io is composed of two parts:
 //a server that integrates with (or mounts on) the Node.JS HTTP Server socket.io
