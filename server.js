@@ -11,6 +11,30 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// //socket.io serverside  code
+// const io = require("socket.io")(PORT);
+
+// //stores created user names
+// const users = {};
+
+// //everytime a user loads webpage, this function will be called
+// io.on("connection", (socket) => {
+//   socket.on("new-user", (name) => {
+//     users[socket.id] = name;
+//     socket.broadcast.emit("user-connected", name);
+//   });
+//   socket.on("send-chat-message", (message) => {
+//     socket.broadcast.emit("chat-message", {
+//       message: message,
+//       name: users[socket.id],
+//     });
+//   });
+//   socket.on("disconnect", () => {
+//     socket.broadcast.emit("user-disconnected", users[socket.id]);
+//     delete users[socket.id];
+//   });
+// });
+
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({
   helpers,
