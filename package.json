@@ -1,5 +1,5 @@
 {
-  "name": "crowd-funding",
+  "name": "On-The-Same-Page",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -21,7 +21,8 @@
     "express-session": "^1.17.1",
     "googleapis": "^91.0.0",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "socket.io": "^2.4.1"
   },
   "devDependencies": {
     "eslint": "^7.12.1",
