@@ -239,3 +239,12 @@ margin: 25px;
  font-size: 2rem;
 
 }
+
+
+.name-box123 {
+  margin-top: 7vh;
+  background-color: var(--primary);
+  color: var(--light);
+  border: 7px double var(--tertiary);
+  border-radius: 10px;
+}
