@@ -7,10 +7,10 @@ const newFormHandler = async (event) => {
   const isbn = document.querySelector('#book-isbn').value.trim();
   const pages = document.querySelector('#book-pages').value.trim();
 
-  if (title && author && description & isbn & pages ) {
+  if (title && author && description && isbn && pages) {
     const response = await fetch(`/api/books`, {
       method: 'POST',
-      body: JSON.stringify({ title, author, description, isbn, pages}),
+      body: JSON.stringify({ title, author, description, isbn, pages }),
       headers: {
         'Content-Type': 'application/json',
       },
