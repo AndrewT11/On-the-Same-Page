@@ -84,6 +84,44 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+//Get books by Genre
+router.get('/genres', withAuth, async (req, res) => {
+  try {
+    const genreData = await Book.findAll({
+      order: [['genre', 'ASC']],
+    });
+
+    const books = genreData.map((book) => book.get({ plain: true }));
+
+    res.render('booklist', {
+      books,
+      logged_in: req.session.logged_in,
+    });
+  } catch {
+    res.status(500).json(err);
+  }
+});
+
+//Get books by Author
+router.get('/authors', withAuth, async (req, res) => {
+  try {
+    const authorData = await Book.findAll({
+      // where: {
+      //   author: 1,
+      // },
+      order: [['author', 'ASC']],
+    });
+
+    const books = authorData.map((book) => book.get({ plain: true }));
+
+    res.render('booklist', {
+      books,
+      logged_in: req.session.logged_in,
+    });
+  } catch {
+    res.status(500).json(err);
+  }
+});
 
 
 
