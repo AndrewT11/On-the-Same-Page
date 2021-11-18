@@ -1,5 +1,5 @@
 {
-  "name": "On-The-Same-Page",
+  "name": "OnTheSamePage",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -22,7 +22,7 @@
     "googleapis": "^91.0.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
-    "socket.io": "^2.4.1"
+    "socket.io": "^4.3.2"
   },
   "devDependencies": {
     "eslint": "^7.12.1",
