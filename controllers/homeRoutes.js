@@ -69,11 +69,23 @@ router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Book }],
+      attributes: {
+        exclude: ['password']
+      },
+      include: [{
+        model: Book
+      }],
     });
 
-    const user = userData.get({ plain: true });
+    const user = userData.get({
+      plain: true
+    });
+
+    for (let i = 0; i < user.books.length; i++) {
+      let book = user.books[i];
+      let googleBook = await getBookByISBN(book.isbn);
+      book.image = googleBook.data.items[0].volumeInfo.imageLinks.thumbnail;
+    }
 
     res.render('profile', {
       ...user,
@@ -88,10 +100,14 @@ router.get('/profile', withAuth, async (req, res) => {
 router.get('/genres', withAuth, async (req, res) => {
   try {
     const genreData = await Book.findAll({
-      order: [['genre', 'ASC']],
+      order: [
+        ['genre', 'ASC']
+      ],
     });
 
-    const books = genreData.map((book) => book.get({ plain: true }));
+    const books = genreData.map((book) => book.get({
+      plain: true
+    }));
 
     res.render('booklist', {
       books,
@@ -109,10 +125,14 @@ router.get('/authors', withAuth, async (req, res) => {
       // where: {
       //   author: 1,
       // },
-      order: [['author', 'ASC']],
+      order: [
+        ['author', 'ASC']
+      ],
     });
 
-    const books = authorData.map((book) => book.get({ plain: true }));
+    const books = authorData.map((book) => book.get({
+      plain: true
+    }));
 
     res.render('booklist', {
       books,
