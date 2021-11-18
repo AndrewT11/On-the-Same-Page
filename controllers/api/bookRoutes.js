@@ -1,20 +1,22 @@
 const router = require('express').Router();
-const {
-  Book
-} = require('../../models');
+const { Book } = require('../../models');
 const withAuth = require('../../utils/auth');
 const {
   getBookByISBN,
   getBookByAuthor,
   getBookByTitle,
-  getBookByPages
+  getBookByPages,
 } = require('../../db/bookApi');
 
 //create new book
 router.post('/', withAuth, async (req, res) => {
   try {
     const newBook = await Book.create({
-      ...req.body,
+      title: req.body.title,
+      author: req.body.author,
+      description: req.body.description,
+      isbn: req.body.isbn,
+      pages: req.body.pages,
       user_id: req.session.user_id,
     });
 
@@ -48,45 +50,6 @@ router.get('/', withAuth, async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
-
-//Get books by Genre
-router.get('/genres', withAuth, async (req, res) => {
-  try {
-    const genreData = await Book.findAll({
-      order: [['genre', 'ASC']],
-    });
-
-    const books = genreData.map((book) => book.get({ plain: true }));
-
-    res.render('booklist', {
-      books,
-      logged_in: req.session.logged_in,
-    });
-  } catch {
-    res.status(500).json(err);
-  }
-});
-
-//Get books by Author
-router.get('/authors', withAuth, async (req, res) => {
-  try {
-    const authorData = await Book.findAll({
-      // where: {
-      //   author: 1,
-      // },
-      order: [['author', 'ASC']],
-    });
-
-    const books = authorData.map((book) => book.get({ plain: true }));
-
-    res.render('booklist', {
-      books,
-      logged_in: req.session.logged_in,
-    });
-  } catch {
-    res.status(500).json(err);
-  }
-});
 
 //delete book
 // router.delete('/:id', withAuth, async (req, res) => {
