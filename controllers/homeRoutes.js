@@ -115,8 +115,8 @@ router.get('/genres', withAuth, async (req, res) => {
       plain: true
     }));
 
-    for (let i = 0; i < user.books.length; i++) {
-      let book = user.books[i];
+    for (let i = 0; i < books.length; i++) {
+      let book = books[i];
       let googleBook = await getBookByISBN(book.isbn);
       book.image = googleBook.data.items[0].volumeInfo.imageLinks.thumbnail;
     }
@@ -145,6 +145,12 @@ router.get('/authors', withAuth, async (req, res) => {
     const books = authorData.map((book) => book.get({
       plain: true
     }));
+
+    for (let i = 0; i < books.length; i++) {
+      let book = books[i];
+      let googleBook = await getBookByISBN(book.isbn);
+      book.image = googleBook.data.items[0].volumeInfo.imageLinks.thumbnail;
+    }
 
     res.render('booklist', {
       books,
