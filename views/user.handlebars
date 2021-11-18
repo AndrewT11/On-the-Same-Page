@@ -1,0 +1,71 @@
+
+
+   <style>
+        body {
+          background-image: url('/images/background-5.jpeg');
+        }
+      </style>
+
+
+
+
+<section class="container">
+  <div class ="name-box123">
+  <h3 class="user-name center-align">{{name}}'s Books</h3>
+  </div>
+
+  <section class="flex-row justify-center">
+    {{#each books as |book|}}
+    {{> book-details}}
+    {{/each}}
+  </section>
+</section>
+
+{{!-- <div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Create a New Project:</h3>
+
+    <form class="form new-project-form">
+      <div class="form-group">
+        <label for="project-name">project name:</label>
+        <input class="form-input" type="text" id="project-name" name="project-name" />
+      </div>
+      <div class="form-group">
+        <label for="project-funding">needed funding ($):</label>
+        <input class="form-input" type="number" id="project-funding" name="project-funding" />
+      </div>
+      <div class="form-group">
+        <label for="project-desc">description:</label>
+        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+
+  {{#if users.length}}
+  <div class="col-md-6 user-list">
+    <h3>Current Users:</h3>
+
+    {{#each users as |user|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/user/{{user.id}}">{{user.name}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{user.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="./js/user.js"></script> --}}

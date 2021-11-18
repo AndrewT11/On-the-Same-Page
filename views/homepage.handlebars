@@ -1,24 +1,62 @@
-<!-- Loop over each object in the projects array -->
-{{#each projects as |project| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/project/{{project.id}}">{{project.name}}</a>
-    </h2>
-    <p>
-      <span for="img" aria-label="money">💲</span>
-      <!-- Pass needed_funding value to the helper function -->
-      <span class="dollar-amount">{{format_amount project.needed_funding}}</span>
-      needed!
-    </p>
-    <p>Created by {{project.user.name}} on {{format_date project.date_created}}</p>
-  </div>
-  <div class="col-md-7">
-    <p>
-      {{project.description}}
-    </p>
-  </div>
+
+
+
+    <style>
+        body {
+          background-image: url('/images/background-4.jpeg');
+        }
+      </style>
+
+
+<div class = "container">
+
+<div class="row">
+    <div class=" valign-wrapper greenbox ">
+
+      <ul class="center-align ">   View By:
+       <li> <a href="#modal2" class="waves-effect waves-light btn-large teal darken-4 z-depth-3 modal-trigger">User</a>
+        <a href="/authors" class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Author</a>
+        <a href="/genres" class="waves-effect waves-light btn-large teal darken-4 z-depth-3">Genre</a></li>
+      </ul>
+
+    </div>
+
 </div>
-{{/each}}
+
+</div>
+         
+<!-- Modal Structure -->
+<div id="modal2" class="modal ">   
+ 
+   <div class="modal-content center-align">
+         <div class=" modal-top">
+   <h4 id="info-modal-heading center-align">Users</h4> 
+   </div>
+
+  <div class= " valign-wrapper  userbox ">
+
+    <div class= " center-align ">
+      <ul> 
+        {{#each users as |user|}}
+       <li> {{> user-details}}</li>
+        {{/each}}
+    </ul>
+    </div>
+
+  </div>
+
+    <div class="modal-footer  center-align">
+        <button href="#!" class="modal-close waves-effect waves teal darken-4 btn-large add-book">Close Users</button>
+    </div>
+</div>
+ </div>
+
+ 
+  <script src="./js/homepage.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+</script>
+

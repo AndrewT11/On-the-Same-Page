@@ -1,48 +1,94 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div>
-</div>
+  <div class="row">
+        <div class="col s12 m4">
+          <div>
+          <h3>Welcome, {{name}}!</h3>
+         </div>    
 
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Project:</h3>
+         <div class=" center-align">
+        <!-- Modal Trigger -->
+         <a class="waves-effect waves-light btn modal-trigger " href="#modal1">Add New Book</a>
+          </div>
+       </div>
 
-    <form class="form new-project-form">
-      <div class="form-group">
-        <label for="project-name">project name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
-      </div>
-      <div class="form-group">
-        <label for="project-funding">needed funding ($):</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
-      </div>
-      <div class="form-group">
-        <label for="project-desc">description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
 
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
+        <div class= " col s12 m8 ">
 
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
+          <div class=" bookbox ">
+
+           {{#each books as |book|}}
+        {{> book-details}}
+        {{/each}}
+          </div>
+
+
+        </div>
+
+
+   </div>
+      
+   
+
+     
+<!-- Modal Structure -->
+<div id="modal1" class="modal ">   
+ 
+   <div class="modal-content center-align">
+         <div class=" modal-top">
+   <h4 id="info-modal-heading center-align">New Book</h4> 
+   </div>
+      <form class="form new-book-form  center-align">
+
+        <div class="row">
+        <div class="form-group input-field  center-align">
+          <input class="form-input" type="text" id="book-title" name="book-title" />
+          <label for="book-title">Book Title:</label>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group input-field  center-align">
+          <input class="form-input" type="text" id="book-author" name="book-author" />
+          <label for="book-author">Author:</label>
+            </div>
+        </div>   
+
+        <div class="row">
+            <div class="form-group input-field center-align">
+                <input class="form-input" type="text" id="book-isbn" name="book-isbn"></input>
+                <label for="book-isbn">ISBN:</label>
+            </div>
+        </div>
+
+                <div class="row">
+            <div class="form-group input-field center-align">
+                <input class="form-input" type="text" id="book-pages" name="book-pages"></input>
+                <label for="book-pages">Pages:</label>
+            </div>
+        </div>
+
+        <div class="row">
+        <div class="form-group input-field  center-align">        
+        <textarea class="form-input" type="text" id="book-desc" name="book-desc"></textarea>
+       <label for="book-desc">Description:</label> 
+       </div>
+
+
+      </form>
+    
+   
+    <div class="modal-footer  center-align">
+        <button href="#!" class="modal-close waves-effect waves teal darken-4 btn-large add-book">Add Book</button>
     </div>
-    {{/each}}
-  </div>
-  {{/if}}
 </div>
+ </div>
 
-<script src="./js/profile.js"></script>
+
+
+ 
+  <script src="./js/profile.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+</script>

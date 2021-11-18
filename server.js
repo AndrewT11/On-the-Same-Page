@@ -11,8 +11,34 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// //socket.io serverside  code
+// const io = require("socket.io")(PORT);
+
+// //stores created user names
+// const users = {};
+
+// //everytime a user loads webpage, this function will be called
+// io.on("connection", (socket) => {
+//   socket.on("new-user", (name) => {
+//     users[socket.id] = name;
+//     socket.broadcast.emit("user-connected", name);
+//   });
+//   socket.on("send-chat-message", (message) => {
+//     socket.broadcast.emit("chat-message", {
+//       message: message,
+//       name: users[socket.id],
+//     });
+//   });
+//   socket.on("disconnect", () => {
+//     socket.broadcast.emit("user-disconnected", users[socket.id]);
+//     delete users[socket.id];
+//   });
+// });
+
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({
+  helpers,
+});
 
 const sess = {
   secret: 'Super secret secret',
@@ -20,8 +46,8 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
@@ -31,12 +57,21 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
-});
-
+sequelize
+  .sync({
+    force: false,
+  })
+  .then(() => {
+    app.listen(PORT, () =>
+      console.log('Now listening: http://localhost:' + PORT)
+    );
+  });

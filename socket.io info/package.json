@@ -4,3 +4,6 @@
     "description": "my first socket.io app",
     "dependencies": {}
   }
+
+//   npm install express@4
+// npm install socket.io
