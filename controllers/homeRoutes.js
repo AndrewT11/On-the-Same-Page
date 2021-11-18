@@ -28,6 +28,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', {
       users,
       logged_in: req.session.logged_in,
+      username: req.session.name,
     });
   } catch (err) {
     res.status(500).json(err);
