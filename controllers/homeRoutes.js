@@ -53,6 +53,12 @@ router.get('/user/:id', async (req, res) => {
         plain: true,
       });
 
+      for (let i = 0; i < user.books.length; i++) {
+        let book = user.books[i];
+        let googleBook = await getBookByISBN(book.isbn);
+        book.image = googleBook.data.items[0].volumeInfo.imageLinks.thumbnail;
+      }
+
       res.render('user', {
         ...user,
         logged_in: req.session.logged_in,
@@ -108,6 +114,12 @@ router.get('/genres', withAuth, async (req, res) => {
     const books = genreData.map((book) => book.get({
       plain: true
     }));
+
+    for (let i = 0; i < user.books.length; i++) {
+      let book = user.books[i];
+      let googleBook = await getBookByISBN(book.isbn);
+      book.image = googleBook.data.items[0].volumeInfo.imageLinks.thumbnail;
+    }
 
     res.render('booklist', {
       books,
