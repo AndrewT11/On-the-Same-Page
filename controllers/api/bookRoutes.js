@@ -50,16 +50,16 @@ router.get('/', withAuth, async (req, res) => {
 // });
 
 //Get books by Genre
-router.get('/', withAuth, async (req, res) => {
+router.get('/genres', withAuth, async (req, res) => {
   try {
     const genreData = await Book.findAll({
       order: [['genre', 'ASC']],
     });
 
-    const genres = genreData.map((book) => book.get({ plain: true }));
+    const books = genreData.map((book) => book.get({ plain: true }));
 
-    res.render('genre', {
-      genres,
+    res.render('booklist', {
+      books,
       logged_in: req.session.logged_in,
     });
   } catch {
@@ -68,19 +68,19 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 //Get books by Author
-router.get('/', withAuth, async (req, res) => {
+router.get('/authors', withAuth, async (req, res) => {
   try {
     const authorData = await Book.findAll({
-      where: {
-        author: 1,
-      },
+      // where: {
+      //   author: 1,
+      // },
       order: [['author', 'ASC']],
     });
 
-    const authors = authorData.map((book) => book.get({ plain: true }));
+    const books = authorData.map((book) => book.get({ plain: true }));
 
-    res.render('author', {
-      authors,
+    res.render('booklist', {
+      books,
       logged_in: req.session.logged_in,
     });
   } catch {
