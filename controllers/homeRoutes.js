@@ -1,23 +1,20 @@
 const router = require('express').Router();
-const {
-  Book,
-  User
-} = require('../models');
+const { Book, User } = require('../models');
 const withAuth = require('../utils/auth');
-const {
-  getBookByISBN
-} = require('../db/bookApi');
+const { getBookByISBN } = require('../db/bookApi');
 
 // Get all users for homepage
 router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll({
-      include: [{
-        model: Book,
-        //filename will be the picture preview of the book. Should be the first in the list. filename[0]
-        attributes: ['title'],
-        // add file name and description back in once we can get this working.
-      }, ],
+      include: [
+        {
+          model: Book,
+          //filename will be the picture preview of the book. Should be the first in the list. filename[0]
+          attributes: ['title'],
+          // add file name and description back in once we can get this working.
+        },
+      ],
     });
 
     // Serialize data so the template can read it
@@ -44,10 +41,12 @@ router.get('/user/:id', async (req, res) => {
   } else {
     try {
       const userData = await User.findByPk(req.params.id, {
-        include: [{
-          model: Book,
-          attributes: ['title', 'author', 'isbn', 'pages', 'user_id'],
-        }, ],
+        include: [
+          {
+            model: Book,
+            attributes: ['title', 'author', 'isbn', 'pages', 'user_id'],
+          },
+        ],
       });
       const user = userData.get({
         plain: true,
@@ -76,15 +75,17 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: {
-        exclude: ['password']
+        exclude: ['password'],
       },
-      include: [{
-        model: Book
-      }],
+      include: [
+        {
+          model: Book,
+        },
+      ],
     });
 
     const user = userData.get({
-      plain: true
+      plain: true,
     });
 
     for (let i = 0; i < user.books.length; i++) {
@@ -95,7 +96,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
     res.render('profile', {
       ...user,
-      logged_in: true
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -106,14 +107,14 @@ router.get('/profile', withAuth, async (req, res) => {
 router.get('/genres', withAuth, async (req, res) => {
   try {
     const genreData = await Book.findAll({
-      order: [
-        ['genre', 'ASC']
-      ],
+      order: [['genre', 'ASC']],
     });
 
-    const books = genreData.map((book) => book.get({
-      plain: true
-    }));
+    const books = genreData.map((book) =>
+      book.get({
+        plain: true,
+      })
+    );
 
     for (let i = 0; i < books.length; i++) {
       let book = books[i];
@@ -137,14 +138,14 @@ router.get('/authors', withAuth, async (req, res) => {
       // where: {
       //   author: 1,
       // },
-      order: [
-        ['author', 'ASC']
-      ],
+      order: [['author', 'ASC']],
     });
 
-    const books = authorData.map((book) => book.get({
-      plain: true
-    }));
+    const books = authorData.map((book) =>
+      book.get({
+        plain: true,
+      })
+    );
 
     for (let i = 0; i < books.length; i++) {
       let book = books[i];
@@ -160,9 +161,6 @@ router.get('/authors', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
-
 
 // router.get('/profile', async (req, res) => {
 //   try {
