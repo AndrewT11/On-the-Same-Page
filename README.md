@@ -52,12 +52,13 @@ Use Node.js and Express.js to create a RESTful API.
 
 ## Media
 
-- ![Home Page](http://url/to/img.png)
-- ![Profile Page](http://url/to/img.png)
-- ![Users Page](http://url/to/img.png)
+- ![Home Page](./public/images/OTSPHomepage.png)
+- ![Books Page](./public/images/OTSPBooksbyAuthor.png)
+- ![Profile Page](./public/images/OTSPProfile.png)
 
 ## Links
 
+- [Heroku Link](https://on-the-same-page.herokuapp.com/)
 - [Deployed Website Link](https://andrewt11.github.io/On-the-Same-Page/)
 - [Code Repository Link](https://github.com/AndrewT11/On-the-Same-Page/)
 
@@ -67,11 +68,13 @@ Allen Cheslik
 Andrea Strickland
 Andrew Tran
 Frantz Felix
+Web Dev Simplified (Youtube Content Creator)
 
 ### Resources
 
 - https://www.w3schools.com/
 - https://developer.mozilla.org/en-US/
+- https://www.npmjs.com/
 - https://choosealicense.com/
 - https://www.stackoverflow.com
 
