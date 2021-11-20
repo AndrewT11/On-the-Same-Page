@@ -68,6 +68,7 @@ Allen Cheslik
 Andrea Strickland
 Andrew Tran
 Frantz Felix
+Chris Stallcup
 Web Dev Simplified (Youtube Content Creator)
 
 ### Resources
